@@ -1,0 +1,142 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --font-display: 'DM Serif Display', Georgia, 'Times New Roman', serif;
+
+    /* Warm "kantin" palette */
+    --color-cream-50: #faf6ee;
+    --color-cream-100: #f4eddc;
+    --color-cream-200: #eadfc4;
+
+    --color-ink-950: #17100b;
+    --color-ink-900: #201710;
+    --color-ink-800: #2d2218;
+    --color-ink-700: #433528;
+    --color-ink-600: #6b5a48;
+    --color-ink-400: #9d8b74;
+    --color-ink-300: #b9a992;
+    --color-ink-200: #d4c7b1;
+    --color-ink-100: #e8dfcd;
+
+    --color-tomato-300: #ff8f74;
+    --color-tomato-400: #ff6a4d;
+    --color-tomato-500: #f2512f;
+    --color-tomato-600: #dc3d1c;
+    --color-tomato-700: #b42d10;
+
+    --color-honey-200: #ffe6ad;
+    --color-honey-300: #ffd270;
+    --color-honey-400: #f5b63a;
+    --color-honey-500: #eda511;
+
+    --color-leaf-400: #57b17f;
+    --color-leaf-500: #379a63;
+    --color-leaf-600: #267c4e;
+
+    --color-night: #17110c;
+}
+
+@layer base {
+    body {
+        background-color: var(--color-cream-50);
+        color: var(--color-ink-900);
+        /* subtle dotted texture so the page doesn't feel flat */
+        background-image: radial-gradient(rgb(32 23 16 / 0.08) 0.8px, transparent 0.8px);
+        background-size: 22px 22px;
+    }
+
+    ::selection {
+        background-color: var(--color-honey-400);
+        color: var(--color-ink-900);
+    }
+}
+
+@utility scrollbar-hide {
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+@utility card-brutal {
+    border: 2px solid var(--color-ink-200);
+    border-radius: 1rem;
+    box-shadow: 5px 5px 0 0 var(--color-ink-300);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+    background-color: var(--color-cream-100);
+}
+
+@utility card-brutal-hover {
+    &:hover {
+        transform: translate(-2px, -2px);
+        box-shadow: 8px 8px 0 0 var(--color-ink-300);
+    }
+
+    &:active {
+        transform: translate(1px, 1px);
+        box-shadow: 3px 3px 0 0 var(--color-ink-300);
+    }
+}
+
+/* ---------- Animations ---------- */
+@keyframes rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes toast-in {
+    from { opacity: 0; transform: translateY(-24px) scale(0.95); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toast-out {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-24px) scale(0.95); }
+}
+
+@keyframes bounce-in {
+    0%   { opacity: 0; transform: translateY(40px) scale(0.85); }
+    55%  { opacity: 1; transform: translateY(-8px) scale(1.03); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes bump {
+    0%   { transform: scale(1); }
+    35%  { transform: scale(1.45); }
+    60%  { transform: scale(0.92); }
+    100% { transform: scale(1); }
+}
+
+@layer utilities {
+    .animate-rise    { animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .animate-fade    { animation: fade 0.8s ease both; }
+    .animate-toast-in  { animation: toast-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .animate-toast-out { animation: toast-out 0.25s ease forwards; }
+    .animate-fab     { animation: bounce-in 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+    .animate-bump    { animation: bump 0.4s ease; }
+
+    .reveal {
+        opacity: 0;
+    }
+    .reveal.is-visible {
+        animation: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-delay: var(--reveal-delay, 0ms);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-rise, .animate-fade, .animate-toast-in, .animate-toast-out,
+    .animate-fab, .animate-bump, .reveal, .reveal.is-visible {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+}
