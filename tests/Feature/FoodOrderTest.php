@@ -57,8 +57,8 @@ class FoodOrderTest extends TestCase
     public function test_admin_can_login(): void
     {
         $response = $this->post('/admin/login', [
-            'email' => 'admin1@kdi.com',
-            'password' => 'rplkdi1510',
+            'email' => 'varo@admin.com',
+            'password' => 'admin1510',
         ]);
 
         $response->assertRedirect(route('admin.dashboard'));

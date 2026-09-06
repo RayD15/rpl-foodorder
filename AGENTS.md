@@ -20,7 +20,7 @@ Aplikasi pemesanan makanan/minuman berbasis web **mobile-first** untuk tugas KDI
 - Simbol storage untuk upload gambar: `php artisan storage:link` (sudah dibuat; `public/storage` → `storage/app/public`).
 
 ## Akun & Konfigurasi Awal (Seeder)
-- Admin login: email `admin1@kdi.com`, password `rplkdi1510` (disimpan hashed). Hanya tabel `admins` — tidak ada user/pembeli.
+- Admin login: email `varo@admin.com` / `rayhand@admin.com` / `zaky@admin.com`, password `admin1510` (disimpan hashed). Hanya tabel `admins` — tidak ada user/pembeli.
 - Nomor WhatsApp admin default: `6281234567890` (db `settings`, key `whatsapp_number`), format internasional tanpa `+`/spasi; bisa diubah lewat menu Pengaturan.
 
 ## Keranjang (Cart) — Penting

@@ -45,7 +45,8 @@ class HomeController extends Controller
             ->when($search, fn ($q) => $q->where('name', 'like', "%{$search}%"))
             ->when($categorySlug, fn ($q) => $q->whereHas('category', fn ($c) => $c->where('slug', $categorySlug)))
             ->latest()
-            ->get();
+            ->paginate(12)
+            ->withQueryString();
 
         $categories = Category::withCount('products')->get();
 
