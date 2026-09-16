@@ -33,7 +33,7 @@
                     class="absolute inset-0 transition-opacity duration-1000 ease-in-out {{ $loop->index === 0 ? 'opacity-100' : 'opacity-0' }}">
                     <img src="{{ $product->image_url }}" alt="{{ $product->name }}"
                         @if ($loop->first) fetchpriority="high" decoding="async" @else loading="lazy" decoding="async" @endif
-                        class="h-full w-full object-cover animate-kenBurns">
+                        class="h-full w-full object-cover">
                 </div>
             @endforeach
 
@@ -67,12 +67,6 @@
                     @endforeach
                 </div>
             </div>
-                    <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none" aria-hidden="true">
-                <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="block h-[44px] w-full sm:h-[64px]">
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40 L1440 90 L0 90 Z" fill="#faf8f5"/>
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                </svg>
-            </div>
         </section>
 
     @else
@@ -87,12 +81,6 @@
             <p class="mx-auto mt-3 max-w-xs text-sm text-ink-600">
                 Pilih menu, checkout, langsung pesan via WhatsApp Admin.
             </p>
-                    <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none" aria-hidden="true">
-                <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="block h-[44px] w-full sm:h-[64px]">
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40 L1440 90 L0 90 Z" fill="#faf8f5"/>
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                </svg>
-            </div>
         </section>
     @endif
 
@@ -101,7 +89,7 @@
         <div class="reveal mb-5 flex items-end justify-between">
             <div>
                 <p class="text-xs font-extrabold uppercase tracking-widest text-honey-500">Jelajahi</p>
-                <h2 class="font-display text-3xl font-normal text-ink-900">Menu</h2><div class="underline-grow mt-1 h-1 rounded-full bg-honey-400"></div>
+                <h2 class="font-display text-3xl font-normal text-ink-900">Menu</h2>
             </div>
             <a href="{{ route('menu') }}" class="inline-flex items-center gap-1 text-sm font-bold text-ink-500 transition hover:text-honey-500">
                 Semua Menu
@@ -192,13 +180,7 @@
                 </a>
             </div>
         </div>
-                <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none" aria-hidden="true">
-                <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="block h-[44px] w-full sm:h-[64px]">
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40 L1440 90 L0 90 Z" fill="#faf8f5"/>
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                </svg>
-            </div>
-        </section>
+    </section>
 
     {{-- ==================== SECTION 3: PAKET ==================== --}}
     <section id="paket" data-section="paket" class="section-anchor mt-12">
@@ -308,16 +290,10 @@
                 </div>
             </div>
         @endif
-                <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none" aria-hidden="true">
-                <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="block h-[44px] w-full sm:h-[64px]">
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40 L1440 90 L0 90 Z" fill="#faf8f5"/>
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                </svg>
-            </div>
-        </section>
+    </section>
 
     {{-- CTA penutup --}}
-    <section class="reveal group mt-12 rounded-2xl bg-honey-400 relative overflow-hidden p-6 text-ink-900 shadow-lg">
+    <section class="reveal mt-12 rounded-2xl bg-honey-400 p-6 text-ink-900 shadow-lg">
         <h2 class="font-display text-2xl font-normal leading-tight">Lapar? Yuk pesan sekarang!</h2>
         <p class="mt-1 text-sm text-ink-700">Pesanan langsung dikirim ke WhatsApp Admin untuk konfirmasi cepat.</p>
         <a href="{{ route('cart') }}"
@@ -325,11 +301,5 @@
             Lihat Keranjang
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
         </a>
-                <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none" aria-hidden="true">
-                <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="block h-[44px] w-full sm:h-[64px]">
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40 L1440 90 L0 90 Z" fill="#faf8f5"/>
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                </svg>
-            </div>
-        </section>
+    </section>
 @endsection
