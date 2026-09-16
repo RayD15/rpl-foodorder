@@ -82,9 +82,8 @@
                     class="inline-flex min-h-11 flex-1 items-center justify-center gap-2 rounded-2xl border border-ink-200 bg-honey-400 px-4 py-3 text-sm font-extrabold text-ink-900 shadow-sm transition hover:bg-honey-300 active:scale-[0.98]">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4"><path d="M6.99 11.999c0-.55.45-1 1-1h4.59l3.29-3.29c-.64-.32-1.37-.5-2.13-.5-1.93 0-3.51 1.35-3.9 3.16l-.01.13v.01c0 .55.45 1 1 1h4.59l-3.29 3.29c-.64-.32-1.37-.5-2.13-.5-1.93 0-3.51-1.35-3.9-3.16l-.01-.13v-.01z" /></svg>
                     Buka WhatsApp
-                </button>fcc    co
+                </button>
             </div>
         </div>
     </div>
-</div>
 @endsection

@@ -82,7 +82,6 @@ class AppServiceProvider extends ServiceProvider
 
             $view->with('catalog', $catalog);
             $view->with('catalogJson', json_encode($catalog));
-            $view->with('bundles', $bundles);
             $view->with('bundlesJson', json_encode($bundles));
             $view->with('whatsappNumber', $whatsappNumber);
         });

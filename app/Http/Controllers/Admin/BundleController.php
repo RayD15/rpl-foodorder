@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Bundle;
 use App\Models\Product;
+use App\Services\BundleImageGenerator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class BundleController extends Controller
@@ -32,6 +34,12 @@ class BundleController extends Controller
 
         $this->syncItems($bundle, $request->input('items', []));
 
+        // Reload bundle with items and products for image generation
+        $bundle->load('items.product');
+
+        // Auto-generate image from bundle products
+        $this->handleBundleImage($request, $bundle);
+
         return redirect()
             ->route('admin.bundles.index')
             ->with('success', 'Paket berhasil ditambahkan.');
@@ -53,6 +61,12 @@ class BundleController extends Controller
 
         $this->syncItems($bundle, $request->input('items', []));
 
+        // Reload bundle with items and products for image generation
+        $bundle->load('items.product');
+
+        // Auto-generate image from bundle products
+        $this->handleBundleImage($request, $bundle);
+
         return redirect()
             ->route('admin.bundles.index')
             ->with('success', 'Paket berhasil diperbarui.');
@@ -73,25 +87,21 @@ class BundleController extends Controller
             'name' => ['required', 'string', 'max:191'],
             'description' => ['nullable', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:5120'],
             'status' => ['required', 'in:ready,sold_out'],
         ]);
 
         $data['status'] = $request->input('status', 'ready');
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama di public/images/ (cukup bila bukan path storage)
-            if (
-                $existingImage
-                && ! str_contains($existingImage, '/')
-                && file_exists(public_path('images/'.$existingImage))
-            ) {
-                @unlink(public_path('images/'.$existingImage));
+            // Hapus gambar lama dari storage
+            if ($existingImage) {
+                Storage::disk('public')->delete($existingImage);
             }
 
             $filename = Str::uuid()->toString().'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('images'), $filename);
-            $data['image'] = $filename;
+            $path = $request->file('image')->storeAs('products', $filename, 'public');
+            $data['image'] = $path;
         }
 
         return $data;
@@ -110,6 +120,38 @@ class BundleController extends Controller
 
         foreach ($validItems as $item) {
             $bundle->items()->create($item);
+        }
+    }
+
+    /**
+     * Handle bundle image generation or manual upload.
+     */
+    private function handleBundleImage(Request $request, Bundle $bundle): void
+    {
+        $autoGenerate = $request->has('auto_generate_image');
+        $hasManualUpload = $request->hasFile('image');
+
+        // If manual image is uploaded, use it (overrides auto-generate)
+        if ($hasManualUpload) {
+            // Image already handled in validateData()
+            return;
+        }
+
+        // If auto-generate is enabled and no manual upload, generate from products
+        if ($autoGenerate) {
+            $generator = new BundleImageGenerator;
+            $generatedImage = $generator->generateFromBundle($bundle);
+
+            if ($generatedImage) {
+                $bundle->update(['image' => $generatedImage]);
+            }
+        } elseif (! $hasManualUpload) {
+            // Auto-generate disabled and no manual upload
+            // If bundle has no items, set image to null
+            if ($bundle->items->isEmpty()) {
+                $bundle->update(['image' => null]);
+            }
+            // Otherwise keep existing image
         }
     }
 }

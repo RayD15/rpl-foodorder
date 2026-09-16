@@ -138,25 +138,6 @@
 
     <div id="toast" role="status" aria-live="polite" class="fixed left-1/2 top-4 z-50 hidden max-w-[calc(100vw-2rem)] -translate-x-1/2 break-words rounded-2xl border border-ink-200 bg-white px-4 py-2 text-sm font-bold text-ink-900 shadow-lg"></div>
 
-    {{-- Floating cart bar: muncul saat ada item, sembunyi di cart/checkout/detail --}}
-    @if (! in_array($currentRoute, ['cart', 'checkout', 'product.show', 'bundle.show']))
-        <a href="{{ route('cart') }}" id="floating-cart"
-            class="fixed bottom-20 left-1/2 z-40 hidden w-[calc(100%-2rem)] max-w-2xl -translate-x-1/2 items-center justify-between gap-3 rounded-2xl bg-ink-900 px-5 py-3.5 text-white shadow-xl transition active:scale-[0.98] sm:bottom-6">
-            <span class="flex min-w-0 items-center gap-2.5">
-                <span class="relative grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl bg-honey-400 text-ink-900">
-                    <i data-lucide="shopping-cart" class="h-5 w-5 pointer-events-none"></i>
-                    <span id="floating-cart-count" class="absolute -right-1.5 -top-1.5 grid h-5 min-w-5 place-items-center rounded-full bg-tomato-500 px-1 text-[11px] font-extrabold text-white">0</span>
-                </span>
-                <span class="min-w-0">
-                    <span id="floating-cart-label" class="block truncate text-sm font-bold">0 item</span>
-                    <span id="floating-cart-total" class="block text-xs text-cream-100/80">Rp0</span>
-                </span>
-            </span>
-            <span class="flex flex-shrink-0 items-center gap-1 rounded-xl bg-honey-400 px-4 py-2.5 text-sm font-extrabold text-ink-900">
-                Lihat
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
-            </span>
-        </a>
-    @endif
+
 </body>
 </html>

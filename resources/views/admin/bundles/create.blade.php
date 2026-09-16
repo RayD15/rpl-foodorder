@@ -60,13 +60,20 @@
                     class="rounded-xl border-2 border-ink-200 bg-cream-50 px-4 py-3 text-sm outline-none transition focus:border-honey-500 focus:ring-2 focus:ring-honey-500/20">{{ old('description') }}</textarea>
             </label>
 
-            <label class="flex flex-col gap-1.5">
-                <span class="text-sm font-bold text-ink-800">Gambar</span>
-                <input type="file" name="image" accept="image/*"
-                    class="rounded-xl border-2 border-ink-200 bg-cream-50 px-4 py-3 text-sm">
-                <span class="text-xs text-ink-400">JPG / PNG / WebP / SVG, maks 5MB. Kosongkan untuk pakai placeholder.</span>
-                @error('image') <span class="text-xs font-bold text-honey-600">{{ $message }}</span> @enderror
-            </label>
+            <div class="flex flex-col gap-1.5">
+                <span class="text-sm font-bold text-ink-800">Gambar Paket</span>
+                <label class="flex items-center gap-2 cursor-pointer">
+                    <input type="checkbox" name="auto_generate_image" value="1" checked
+                        class="h-5 w-5 rounded border-2 border-ink-300 text-honey-500 focus:ring-honey-500 focus:ring-2">
+                    <span class="text-sm text-ink-600">Generate otomatis dari gambar produk</span>
+                </label>
+                <div id="manual-image-upload" class="hidden">
+                    <input type="file" name="image" accept="image/*"
+                        class="rounded-xl border-2 border-ink-200 bg-cream-50 px-4 py-3 text-sm">
+                    <span class="text-xs text-ink-400">JPG / PNG / WebP / SVG, maks 5MB.</span>
+                    @error('image') <span class="text-xs font-bold text-honey-600">{{ $message }}</span> @enderror
+                </div>
+            </div>
 
             <div>
                 <span class="text-sm font-bold text-ink-800">Status</span>
@@ -95,6 +102,15 @@
             const container = document.getElementById('bundle-items');
             const addBtn = document.getElementById('bundle-add-item');
             const regularTotal = document.getElementById('bundle-regular-total');
+            const autoGenerateCheckbox = document.querySelector('input[name="auto_generate_image"]');
+            const manualUploadDiv = document.getElementById('manual-image-upload');
+
+            // Toggle manual upload visibility
+            if (autoGenerateCheckbox && manualUploadDiv) {
+                autoGenerateCheckbox.addEventListener('change', () => {
+                    manualUploadDiv.classList.toggle('hidden', autoGenerateCheckbox.checked);
+                });
+            }
 
             const productOptions = @json($products->map(fn ($p) => ['id' => $p->id, 'name' => $p->name, 'price' => $p->price]));
 

@@ -13,29 +13,29 @@
         <div class="grid grid-cols-2 gap-4 sm:grid-cols-3">
             @foreach ($bundles as $bundle)
                 <div class="group flex flex-col overflow-hidden card-brutal card-brutal-hover">
-                    <a href="{{ route('bundle.show', $bundle['id']) }}" class="relative block aspect-[4/3] overflow-hidden bg-cream-200" aria-label="{{ $bundle['name'] }}">
-                        <img src="{{ $bundle['image'] }}" alt="{{ $bundle['name'] }}" loading="lazy" class="h-full w-full object-cover transition duration-300 group-hover:scale-105">
-                        @if ($bundle['savings'] > 0)
+                    <a href="{{ route('bundle.show', $bundle->id) }}" class="relative block aspect-[4/3] overflow-hidden bg-cream-200" aria-label="{{ $bundle->name }}">
+                        <img src="{{ $bundle->image_url }}" alt="{{ $bundle->name }}" loading="lazy" class="h-full w-full object-cover transition duration-300 group-hover:scale-105">
+                        @if ($bundle->savings > 0)
                             <span class="absolute left-2 top-2 max-w-[calc(100%-1rem)] truncate rounded-full bg-honey-400 px-2.5 py-1 text-xs font-extrabold text-ink-900 shadow-xs">
-                                Hemat {{ 'Rp' . number_format($bundle['savings'], 0, ',', '.') }}
+                                Hemat {{ 'Rp' . number_format($bundle->savings, 0, ',', '.') }}
                             </span>
                         @endif
                     </a>
                     <div class="flex flex-1 flex-col p-3.5">
-                        <a href="{{ route('bundle.show', $bundle['id']) }}" class="hover:text-honey-500">
-                            <h3 class="text-sm font-bold leading-tight text-ink-900">{{ $bundle['name'] }}</h3>
+                        <a href="{{ route('bundle.show', $bundle->id) }}" class="hover:text-honey-500">
+                            <h3 class="text-sm font-bold leading-tight text-ink-900">{{ $bundle->name }}</h3>
                         </a>
                         <p class="mt-0.5 line-clamp-2 text-xs text-ink-400">
-                            {{ collect($bundle['items'])->map(fn ($i) => $i['name'] . ($i['qty'] > 1 ? ' ×' . $i['qty'] : ''))->join(' + ') }}
+                            {{ collect($bundle->items->map(fn ($i) => ['name' => $i->product?->name ?? 'Produk dihapus', 'qty' => $i->qty]))->map(fn ($i) => $i['name'] . ($i['qty'] > 1 ? ' ×' . $i['qty'] : ''))->join(' + ') }}
                         </p>
                         <div class="mt-2 flex items-end justify-between gap-2">
                             <div>
-                                @if ($bundle['regular_total'] > $bundle['price'])
-                                    <p class="text-xs text-ink-400 line-through">{{ 'Rp' . number_format($bundle['regular_total'], 0, ',', '.') }}</p>
+                                @if ($bundle->regular_total > $bundle->price)
+                                    <p class="text-xs text-ink-400 line-through">{{ 'Rp' . number_format($bundle->regular_total, 0, ',', '.') }}</p>
                                 @endif
-                                <span class="text-sm font-extrabold text-honey-600">{{ 'Rp' . number_format($bundle['price'], 0, ',', '.') }}</span>
+                                <span class="text-sm font-extrabold text-honey-600">{{ 'Rp' . number_format($bundle->price, 0, ',', '.') }}</span>
                             </div>
-                            <button type="button" data-add-bundle="{{ $bundle['id'] }}" aria-label="Tambah {{ $bundle['name'] }} ke keranjang"
+                            <button type="button" data-add-bundle="{{ $bundle->id }}" aria-label="Tambah {{ $bundle->name }} ke keranjang"
                                 class="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl bg-honey-400 text-ink-900 shadow-sm transition hover:bg-honey-300 active:scale-90">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="h-5 w-5 pointer-events-none"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" /></svg>
                             </button>

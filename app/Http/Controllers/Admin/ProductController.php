@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -69,25 +70,21 @@ class ProductController extends Controller
             'category_id' => ['required', 'exists:categories,id'],
             'description' => ['nullable', 'string'],
             'price' => ['required', 'numeric', 'min:0'],
-            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp,svg', 'max:5120'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,webp', 'max:5120'],
             'status' => ['required', 'in:ready,sold_out'],
         ]);
 
         $data['status'] = $request->input('status', 'ready');
 
         if ($request->hasFile('image')) {
-            // Hapus gambar lama di public/images/ (cukup bila bukan path storage)
-            if (
-                $existingImage
-                && ! str_contains($existingImage, '/')
-                && file_exists(public_path('images/'.$existingImage))
-            ) {
-                @unlink(public_path('images/'.$existingImage));
+            // Hapus gambar lama dari storage
+            if ($existingImage) {
+                Storage::disk('public')->delete($existingImage);
             }
 
             $filename = Str::uuid()->toString().'.'.$request->file('image')->getClientOriginalExtension();
-            $request->file('image')->move(public_path('images'), $filename);
-            $data['image'] = $filename;
+            $path = $request->file('image')->storeAs('products', $filename, 'public');
+            $data['image'] = $path;
         }
 
         return $data;

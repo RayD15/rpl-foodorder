@@ -78,7 +78,7 @@
                 @endif
             </div>
             <p class="mt-3 text-center text-xs text-ink-400">
-                Menampilkan {{ $products->firstItem() }}–{{ $products->lastItem() }} dari {{ $products->total() }} produk
+                Menampilkan {{ $products->firstItem() }}â€“{{ $products->lastItem() }} dari {{ $products->total() }} produk
             </p>
         @endif
     @else

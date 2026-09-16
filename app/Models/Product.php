@@ -26,6 +26,7 @@ class Product extends Model
     ];
 
     public const STATUS_READY = 'ready';
+
     public const STATUS_SOLD_OUT = 'sold_out';
 
     protected static function booted(): void
@@ -47,11 +48,20 @@ class Product extends Model
             return asset('images/placeholder.svg');
         }
 
-        if (str_contains($this->image, '/')) {
-            return Storage::url($this->image);
+        // Check if image exists in public
+        if (file_exists(public_path('images/'.$this->image))) {
+            return asset('images/'.$this->image);
         }
 
-        return asset('images/'.$this->image);
+        // Check if image exists in storage
+        if (str_starts_with($this->image, 'products/')) {
+            $storagePath = storage_path('app/public/'.$this->image);
+            if (file_exists($storagePath)) {
+                return asset('storage/'.$this->image);
+            }
+        }
+
+        return asset('images/placeholder.svg');
     }
 
     public function category(): BelongsTo

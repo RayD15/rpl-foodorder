@@ -40,8 +40,8 @@
             <div class="absolute inset-0 bg-gradient-to-t from-ink-950/95 via-ink-950/40 to-ink-950/10 sm:bg-gradient-to-r"></div>
 
             <div class="relative z-10 w-full max-w-2xl px-6 pb-12 pt-16 sm:pt-0 sm:pb-0">
-                <h1 style="--reveal-delay:80ms" class="animate-rise mt-4 max-w-lg font-display text-4xl font-normal leading-tight sm:text-6xl">
-                    Mau pesan apa hari ini?
+                <h1 style="--reveal-delay:80ms; font-size: clamp(2.5rem, 6vw, 4rem);" class="animate-rise mt-4 max-w-lg font-display font-bold leading-tight">
+                    Mau pesan apa<br class="sm:hidden"> hari ini?
                 </h1>
                 <p style="--reveal-delay:160ms" class="animate-rise mt-3 max-w-sm text-sm text-cream-100/90 sm:text-base">
                     Pilih menu favoritmu, langsung pesan lewat WhatsApp Admin.
@@ -68,6 +68,7 @@
                 </div>
             </div>
         </section>
+
     @else
         <section id="hero" data-section="hero" class="text-center">
             <span class="inline-flex items-center gap-1.5 rounded-full bg-honey-200 px-3 py-1 text-xs font-bold text-ink-800">
@@ -75,7 +76,7 @@
                 Jajan di sekolah, makin gampang!
             </span>
             <h1 class="mt-4 font-display text-4xl font-normal leading-tight text-ink-900 sm:text-5xl">
-                Mau pesan apa hari ini?
+                Mau pesan apa<br class="sm:hidden"> hari ini?
             </h1>
             <p class="mx-auto mt-3 max-w-xs text-sm text-ink-600">
                 Pilih menu, checkout, langsung pesan via WhatsApp Admin.

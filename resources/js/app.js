@@ -138,26 +138,7 @@ function updateFab() {
         desktopCount.classList.toggle('grid', count > 0);
     }
 
-    // Floating cart bar: "N item • RpX", sembunyi saat kosong.
-    const floatingCart = document.getElementById('floating-cart');
-    if (floatingCart) {
-        floatingCart.classList.toggle('hidden', count === 0);
-        floatingCart.classList.toggle('flex', count > 0);
-        const label = document.getElementById('floating-cart-label');
-        const totalEl = document.getElementById('floating-cart-total');
-        const countEl = document.getElementById('floating-cart-count');
-        if (label) label.textContent = `${count} item`;
-        if (totalEl) totalEl.textContent = formatRupiah(total);
-        if (countEl) {
-            countEl.textContent = count > 99 ? '99+' : count;
-            countEl.classList.toggle('hidden', count === 0);
-        }
-        if (count > 0) {
-            floatingCart.classList.remove('animate-fab');
-            void floatingCart.offsetWidth;
-            floatingCart.classList.add('animate-fab');
-        }
-    }
+
 }
 
 // Link menu hardcode aman untuk subfolder hosting (pakai path relatif,
