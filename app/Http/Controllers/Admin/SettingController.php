@@ -17,6 +17,11 @@ class SettingController extends Controller
 
     public function update(Request $request)
     {
+        $number = preg_replace('/^62/', '', trim($request->whatsapp_number));
+        $whatsappNumber = '62' . $number;
+
+        $request->merge(['whatsapp_number' => $whatsappNumber]);
+
         $data = $request->validate([
             'whatsapp_number' => ['required', 'string', 'max:20', 'regex:/^62\d{8,15}$/'],
         ]);

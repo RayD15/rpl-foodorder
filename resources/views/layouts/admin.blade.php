@@ -47,8 +47,8 @@
             </nav>
 
             <div class="border-t border-ink-200 pt-4">
-                <p class="px-4 text-sm font-bold text-ink-900">{{ Auth::guard('admin')->user()->name }}</p>
-                <p class="px-4 text-xs text-ink-400">{{ Auth::guard('admin')->user()->email }}</p>
+                <p class="px-4 text-sm font-bold text-ink-900">TamsisFood Admin</p>
+                <p class="px-4 text-xs text-ink-400">Admin</p>
                 <form action="{{ route('admin.logout') }}" method="POST" class="mt-2">
                     @csrf
                     <button type="submit"

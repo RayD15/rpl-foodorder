@@ -5,7 +5,7 @@
 @section('content')
     <div class="mb-4">
         <h1 class="font-display text-xl font-normal text-ink-900 sm:text-2xl lg:text-3xl">Dashboard</h1>
-        <p class="mt-1 text-sm text-ink-500">Selamat datang kembali, {{ Auth::guard('admin')->user()->name }} 👋</p>
+        <p class="mt-1 text-sm text-ink-500">Selamat datang kembali, TamsisFood Admin 👋</p>
     </div>
 
     <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

@@ -16,12 +16,17 @@
             <div>
                 <label class="flex flex-col gap-1.5">
                     <span class="text-sm font-bold text-ink-800">Nomor WhatsApp Admin</span>
-                    <input type="text" name="whatsapp_number" value="{{ old('whatsapp_number', $whatsappNumber) }}"
-                        placeholder="6281234567890" required
-                        class="rounded-xl border-2 border-ink-200 bg-cream-50 px-4 py-3 text-sm outline-none transition focus:border-honey-500 focus:ring-2 focus:ring-honey-500/20">
+                    <div class="flex items-center rounded-xl border-2 border-ink-200 bg-cream-50 px-4 py-3 text-sm shadow-sm transition focus-within:border-honey-500 focus-within:ring-2 focus-within:ring-honey-500/20 focus-within:shadow-md">
+                        <span class="text-ink-400 font-bold mr-2">+62</span>
+                        <span class="text-ink-200">|</span>
+                        <input type="text" name="whatsapp_number" value="{{ old('whatsapp_number', $whatsappNumber) }}"
+                            placeholder="81234567890" required
+                            class="w-full border-none bg-transparent outline-none text-sm px-2">
+                    </div>
                 </label>
                 <p class="mt-2 text-xs text-ink-400">
-                    Gunakan format internasional tanpa <code>+</code>, tanpa strip dan spasi. Contoh: <code>6281234567890</code>.
+                    Nomor internasional tanpa <code>+</code>, tanpa strip dan spasi. Contoh: <code>6281234567890</code>.
+                    <br>Ketik angka setelah <code>62</code>, mulai dari <code>8</code>.
                 </p>
                 @error('whatsapp_number') <p class="mt-2 text-xs font-bold text-honey-600">{{ $message }}</p> @enderror
             </div>

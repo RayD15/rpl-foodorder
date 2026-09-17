@@ -19,14 +19,6 @@
 
         <form action="{{ route('admin.login') }}" method="POST" class="flex flex-col gap-3">
             @csrf
-            @error('email')
-                <p class="rounded-xl border border-honey-500/30 bg-honey-500/10 px-3 py-2 text-sm font-bold text-honey-600">⚠️ {{ $message }}</p>
-            @enderror
-            <label class="flex flex-col gap-1.5">
-                <span class="text-sm font-bold text-ink-800">Email</span>
-                <input type="email" name="email" value="{{ old('email') }}" required autofocus autocomplete="email"
-                    class="rounded-xl border-2 border-ink-200 bg-cream-50 px-4 py-3 text-sm outline-none transition focus:border-honey-500 focus:ring-2 focus:ring-honey-500/20">
-            </label>
             <label class="flex flex-col gap-1.5">
                 <span class="text-sm font-bold text-ink-800">Password</span>
                 <input type="password" name="password" required autocomplete="current-password"
