@@ -1,9 +1,15 @@
 <div class="group flex h-full flex-col overflow-hidden card-brutal card-brutal-hover">
-    <a href="{{ route('product.show', $product) }}" class="relative block aspect-[4/3] overflow-hidden bg-cream-200 shimmer" aria-label="{{ $product->name }}">
-        <div class="absolute inset-0 animate-pulse bg-stone-200 dark:bg-stone-700"></div>
-        <img src="{{ $product->image_url }}" alt="{{ $product->name }}" loading="lazy" decoding="async" width="400" height="300"
-            class="relative h-full w-full object-cover transition duration-700 group-hover:scale-[1.07] opacity-0"
-            onload="this.classList.remove('opacity-0');this.previousElementSibling.remove()">
+    <a href="{{ route('product.show', $product) }}" class="relative block aspect-[4/3] overflow-hidden bg-cream-200 shimmer" aria-label="Produk: {{ $product->name }}">
+        <div class="absolute inset-0 animate-pulse bg-stone-200 dark:bg-stone-700" aria-label="Memuat gambar {{ $product->name }}"></div>
+        <img src="{{ $product->image_url }}"
+             alt="{{ $product->name }}"
+             loading="lazy"
+             decoding="async"
+             width="400"
+             height="300"
+             class="relative h-full w-full object-cover transition duration-700 group-hover:scale-[1.07] opacity-0"
+             onload="this.classList.remove('opacity-0'); this.previousElementSibling.remove();"
+             onerror="this.src='{{ asset('images/placeholder.svg') }}'; this.previousElementSibling.remove(); this.classList.remove('opacity-0');">
         @if (! $product->isReady())
             <div class="absolute inset-0 grid place-items-center bg-ink-900/50">
                 <span class="rounded-full bg-ink-900 px-3 py-1 text-xs font-extrabold uppercase tracking-wide text-white">Sold Out</span>

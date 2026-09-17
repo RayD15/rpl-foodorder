@@ -91,19 +91,19 @@
 </span>
             </a>
             <nav class="hidden md:flex items-center gap-1" data-section-nav>
-                <a href="{{ $homeBase }}#hero" @if ($isHome) data-scroll-to="#hero" @endif data-nav="hero" class="grid h-11 w-11 place-items-center rounded-xl transition {{ $isHome ? 'bg-honey-50/10 text-honey-800 hover:bg-honey-50/20 hover:text-honey-900' : 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5' }}">
+                <a href="{{ $homeBase }}#hero" @if ($isHome) data-scroll-to="#hero" @endif data-nav="hero" class="grid h-11 w-11 place-items-center rounded-xl transition {{ $isHome ? 'bg-honey-50/10 text-honey-800 hover:bg-honey-50/20 hover:text-honey-900' : 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5' }}" @if ($isHome) aria-current="page" @endif>
                     <i data-lucide="house" class="h-5 w-5 pointer-events-none"></i>
                     <span class="text-[10px] pt-1" data-nav-label>Beranda</span>
                 </a>
-                <a href="{{ $homeBase }}#menu" @if ($isHome) data-scroll-to="#menu" @endif data-nav="menu" class="grid h-11 w-11 place-items-center rounded-xl transition {{ $currentRoute === 'menu' || $currentRoute === 'product.show' ? 'bg-honey-50/10 text-honey-800 hover:bg-honey-50/20 hover:text-honey-900' : ($isHome ? 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5' : 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5') }}">
+                <a href="{{ $homeBase }}#menu" @if ($isHome) data-scroll-to="#menu" @endif data-nav="menu" class="grid h-11 w-11 place-items-center rounded-xl transition {{ $currentRoute === 'menu' || $currentRoute === 'product.show' ? 'bg-honey-50/10 text-honey-800 hover:bg-honey-50/20 hover:text-honey-900' : ($isHome ? 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5' : 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5') }}" @if ($currentRoute === 'menu' || $currentRoute === 'product.show') aria-current="page" @endif>
                     <i data-lucide="utensils" class="h-5 w-5 pointer-events-none"></i>
                     <span class="text-[10px] pt-1" data-nav-label>Menu</span>
                 </a>
-                <a href="{{ $homeBase }}#paket" @if ($isHome) data-scroll-to="#paket" @endif data-nav="paket" class="grid h-11 w-11 place-items-center rounded-xl transition {{ $currentRoute === 'paket' || $currentRoute === 'bundle.show' ? 'bg-honey-50/10 text-honey-800 hover:bg-honey-50/20 hover:text-honey-900' : ($isHome ? 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5' : 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5') }}">
+                <a href="{{ $homeBase }}#paket" @if ($isHome) data-scroll-to="#paket" @endif data-nav="paket" class="grid h-11 w-11 place-items-center rounded-xl transition {{ $currentRoute === 'paket' || $currentRoute === 'bundle.show' ? 'bg-honey-50/10 text-honey-800 hover:bg-honey-50/20 hover:text-honey-900' : ($isHome ? 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5' : 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5') }}" @if ($currentRoute === 'paket' || $currentRoute === 'bundle.show') aria-current="page" @endif>
                     <i data-lucide="package" class="h-5 w-5 pointer-events-none"></i>
                     <span class="text-[10px] pt-1" data-nav-label>Paket</span>
                 </a>
-                <a href="{{ route('cart') }}" class="relative grid h-11 w-11 place-items-center rounded-xl transition {{ $currentRoute === 'cart' || $currentRoute === 'checkout' ? 'bg-honey-50/10 text-honey-800 hover:bg-honey-50/20 hover:text-honey-900' : 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5' }}" aria-label="Keranjang">
+                <a href="{{ route('cart') }}" class="relative grid h-11 w-11 place-items-center rounded-xl transition {{ $currentRoute === 'cart' || $currentRoute === 'checkout' ? 'bg-honey-50/10 text-honey-800 hover:bg-honey-50/20 hover:text-honey-900' : 'text-ink-400/50 hover:text-ink-600 hover:bg-cream-50/5' }}" @if ($currentRoute === 'cart' || $currentRoute === 'checkout') aria-current="page" @endif>
                     <i data-lucide="shopping-cart" class="h-5 w-5 pointer-events-none"></i>
                     <span id="desktop-cart-count" class="absolute -top-1 -right-1 hidden h-[18px] min-w-[18px] items-center justify-center rounded-full bg-honey-500 px-1 text-[11px] font-extrabold text-white">0</span>
                     <span class="text-[10px] pt-1" data-nav-label>Keranjang</span>
@@ -118,19 +118,19 @@
 
     {{-- Bottom Navbar (Mobile Only, fixed, tidak pernah hilang saat scroll) --}}
     <nav class="fixed bottom-0 left-0 z-40 grid w-full grid-cols-4 border-t border-ink-100 bg-white/95 pb-safe shadow-[0_-1px_3px_-1px_rgba(0,0,0,0.06)] backdrop-blur md:hidden" data-section-nav>
-        <a href="{{ $homeBase }}#hero" @if ($isHome) data-scroll-to="#hero" @endif data-nav="hero" class="flex flex-col items-center justify-center gap-1 py-2 transition {{ $isHome ? '' : 'text-ink-400 hover:text-honey-500' }}">
+        <a href="{{ $homeBase }}#hero" @if ($isHome) data-scroll-to="#hero" @endif data-nav="hero" class="flex flex-col items-center justify-center gap-1 py-2 transition {{ $isHome ? '' : 'text-ink-400 hover:text-honey-500' }}" @if ($isHome) aria-current="page" @endif>
             <i data-lucide="house" class="h-5 w-5 pointer-events-none"></i>
             <span class="text-[10px]" data-nav-label>Beranda</span>
         </a>
-        <a href="{{ $homeBase }}#menu" @if ($isHome) data-scroll-to="#menu" @endif data-nav="menu" class="flex flex-col items-center justify-center gap-1 py-2 transition {{ $currentRoute === 'menu' || $currentRoute === 'product.show' ? 'text-honey-500' : ($isHome ? '' : 'text-ink-400 hover:text-honey-500') }}">
+        <a href="{{ $homeBase }}#menu" @if ($isHome) data-scroll-to="#menu" @endif data-nav="menu" class="flex flex-col items-center justify-center gap-1 py-2 transition {{ $currentRoute === 'menu' || $currentRoute === 'product.show' ? 'text-honey-500' : ($isHome ? '' : 'text-ink-400 hover:text-honey-500') }}" @if ($currentRoute === 'menu' || $currentRoute === 'product.show') aria-current="page" @endif>
             <i data-lucide="utensils" class="h-5 w-5 pointer-events-none"></i>
             <span class="text-[10px]" data-nav-label>Menu</span>
         </a>
-        <a href="{{ $homeBase }}#paket" @if ($isHome) data-scroll-to="#paket" @endif data-nav="paket" class="flex flex-col items-center justify-center gap-1 py-2 transition {{ $currentRoute === 'paket' || $currentRoute === 'bundle.show' ? 'text-honey-500' : ($isHome ? '' : 'text-ink-400 hover:text-honey-500') }}">
+        <a href="{{ $homeBase }}#paket" @if ($isHome) data-scroll-to="#paket" @endif data-nav="paket" class="flex flex-col items-center justify-center gap-1 py-2 transition {{ $currentRoute === 'paket' || $currentRoute === 'bundle.show' ? 'text-honey-500' : ($isHome ? '' : 'text-ink-400 hover:text-honey-500') }}" @if ($currentRoute === 'paket' || $currentRoute === 'bundle.show') aria-current="page" @endif>
             <i data-lucide="package" class="h-5 w-5 pointer-events-none"></i>
             <span class="text-[10px]" data-nav-label>Paket</span>
         </a>
-        <a href="{{ route('cart') }}" class="relative flex flex-col items-center justify-center gap-1 py-2 transition {{ $currentRoute === 'cart' || $currentRoute === 'checkout' ? 'text-honey-500' : 'text-ink-400 hover:text-honey-500' }}">
+        <a href="{{ route('cart') }}" class="relative flex flex-col items-center justify-center gap-1 py-2 transition {{ $currentRoute === 'cart' || $currentRoute === 'checkout' ? 'text-honey-500' : 'text-ink-400 hover:text-honey-500' }}" @if ($currentRoute === 'cart' || $currentRoute === 'checkout') aria-current="page" @endif>
             <span class="relative pointer-events-none"><i data-lucide="shopping-cart" class="h-5 w-5 pointer-events-none"></i><span id="bottom-cart-count" class="absolute -top-1.5 -right-1.5 hidden h-[18px] min-w-[18px] items-center justify-center rounded-full bg-tomato-500 px-1 text-[11px] font-extrabold text-white">0</span></span>
             <span class="text-[10px] {{ $currentRoute === 'cart' || $currentRoute === 'checkout' ? 'font-bold text-yellow-400' : '' }}">Keranjang</span>
         </a>

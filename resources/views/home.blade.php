@@ -67,12 +67,7 @@
                     @endforeach
                 </div>
             </div>
-                    <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none" aria-hidden="true">
-                <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="block h-[44px] w-full sm:h-[64px]">
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40 L1440 90 L0 90 Z" fill="#faf8f5"/>
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                </svg>
-            </div>
+            @include('partials.wave-divider')
         </section>
 
     @else
@@ -87,12 +82,7 @@
             <p class="mx-auto mt-3 max-w-xs text-sm text-ink-600">
                 Pilih menu, checkout, langsung pesan via WhatsApp Admin.
             </p>
-                    <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none" aria-hidden="true">
-                <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="block h-[44px] w-full sm:h-[64px]">
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40 L1440 90 L0 90 Z" fill="#faf8f5"/>
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                </svg>
-            </div>
+            @include('partials.wave-divider')
         </section>
     @endif
 
@@ -192,13 +182,8 @@
                 </a>
             </div>
         </div>
-                <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none" aria-hidden="true">
-                <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="block h-[44px] w-full sm:h-[64px]">
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40 L1440 90 L0 90 Z" fill="#faf8f5"/>
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                </svg>
-            </div>
-        </section>
+        @include('partials.wave-divider')
+    </section>
 
     {{-- ==================== SECTION 3: PAKET ==================== --}}
     <section id="paket" data-section="paket" class="section-anchor mt-12">
@@ -308,13 +293,9 @@
                 </div>
             </div>
         @endif
-                <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none" aria-hidden="true">
-                <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="block h-[44px] w-full sm:h-[64px]">
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40 L1440 90 L0 90 Z" fill="#faf8f5"/>
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                </svg>
-            </div>
-        </section>
+
+        @include('partials.wave-divider')
+    </section>
 
     {{-- CTA penutup --}}
     <section class="reveal group mt-12 rounded-2xl bg-honey-400 relative overflow-hidden p-6 text-ink-900 shadow-lg">
@@ -325,11 +306,5 @@
             Lihat Keranjang
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
         </a>
-                <div class="absolute bottom-0 left-0 w-full leading-none pointer-events-none" aria-hidden="true">
-                <svg viewBox="0 0 1440 90" preserveAspectRatio="none" class="block h-[44px] w-full sm:h-[64px]">
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40 L1440 90 L0 90 Z" fill="#faf8f5"/>
-                    <path d="M0 70 C 80 10, 160 85, 260 55 C 360 25, 420 75, 540 45 C 640 15, 720 60, 860 35 C 980 10, 1080 65, 1180 30 C 1260 5, 1320 55, 1440 40" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                </svg>
-            </div>
-        </section>
+    </section>
 @endsection
