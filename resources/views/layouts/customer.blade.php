@@ -20,7 +20,7 @@
     @stack('head')
 
     {{-- SEO Meta Tags --}}
-    <title>@yield('title', 'TamsisFood') — Pesan Makanan Online di Jakarta</title>
+    <title>TamsisFood</title>
     <meta name="description" content="@yield('meta_description', 'TamsisFood — Pesan makanan dan minuman online di Jakarta dengan mudah. Pilih menu favoritmu, pesan langsung via WhatsApp.')">
     <meta name="keywords" content="TamsisFood, pesan makanan online Jakarta, pesan minuman online Jakarta, food order Jakarta, makanan, minuman">
     <meta name="author" content="TamsisFood">
@@ -30,7 +30,7 @@
     {{-- Open Graph --}}
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="TamsisFood">
-    <meta property="og:title" content="@yield('title', 'TamsisFood') — Pesan Makanan Online di Jakarta">
+    <meta property="og:title" content="TamsisFood">
     <meta property="og:description" content="@yield('meta_description', 'TamsisFood — Pesan makanan dan minuman online di Jakarta dengan mudah.')">
     <meta property="og:url" content="@yield('canonical', url()->current())">
     <meta property="og:image" content="@yield('og_image', asset('images/placeholder.svg'))">
@@ -38,7 +38,7 @@
 
     {{-- Twitter Card --}}
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="@yield('title', 'TamsisFood') — Pesan Makanan Online di Jakarta">
+    <meta name="twitter:title" content="TamsisFood">
     <meta name="twitter:description" content="@yield('meta_description', 'TamsisFood — Pesan makanan dan minuman online di Jakarta dengan mudah.')">
     <meta name="twitter:image" content="@yield('og_image', asset('images/placeholder.svg'))">
 
@@ -59,9 +59,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Jakarta+Sans:wght@400;500;600;700;800&family=Merriweather:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Jakarta+Sans:wght@400;500;600;700;800&family=Merriweather:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Jakarta+Sans:wght@400;500;600;700;800&family=Merriweather:wght@400;500;600;700&family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;600;700;800&family=Caveat:wght@700&display=swap" rel="stylesheet"></noscript>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <script>
         window.APP = {
@@ -87,7 +87,7 @@
             <a href="{{ $isHome ? '#hero' : route('home') }}" @if ($isHome) data-scroll-to="#hero" @endif class="flex items-center gap-2">
                 <img src="{{ asset('logo/image-removebg-preview.png') }}" alt="TamsisFood Logo" class="h-10 w-10">
                 <span class="text-lg font-extrabold tracking-tight flex items-center gap-1">
-    <span class="font-display" style="color:#000000;">TAMSIS</span><span class="font-soft-serif font-normal text-honey-600">FOOD</span>
+    <span class="font-caveat" style="color:#000000;">TAMSIS</span><span class="font-display font-bold text-honey-500">FOOD</span>
 </span>
             </a>
             <nav class="hidden md:flex items-center gap-1" data-section-nav>
@@ -132,7 +132,7 @@
         </a>
         <a href="{{ route('cart') }}" class="relative flex flex-col items-center justify-center gap-1 py-2 transition {{ $currentRoute === 'cart' || $currentRoute === 'checkout' ? 'text-honey-500' : 'text-ink-400 hover:text-honey-500' }}">
             <span class="relative pointer-events-none"><i data-lucide="shopping-cart" class="h-5 w-5 pointer-events-none"></i><span id="bottom-cart-count" class="absolute -top-1.5 -right-1.5 hidden h-[18px] min-w-[18px] items-center justify-center rounded-full bg-tomato-500 px-1 text-[11px] font-extrabold text-white">0</span></span>
-            <span class="text-[10px] {{ $currentRoute === 'cart' || $currentRoute === 'checkout' ? 'font-bold text-honey-600' : '' }}">Keranjang</span>
+            <span class="text-[10px] {{ $currentRoute === 'cart' || $currentRoute === 'checkout' ? 'font-bold text-yellow-400' : '' }}">Keranjang</span>
         </a>
     </nav>
 

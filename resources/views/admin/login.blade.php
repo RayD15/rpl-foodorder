@@ -29,7 +29,7 @@
             </label>
             <label class="flex flex-col gap-1.5">
                 <span class="text-sm font-bold text-ink-800">Password</span>
-                <input type="password" name="password" required autocomplete="current-password"/
+                <input type="password" name="password" required autocomplete="current-password"
                     class="rounded-xl border-2 border-ink-200 bg-cream-50 px-4 py-3 text-sm outline-none transition focus:border-honey-500 focus:ring-2 focus:ring-honey-500/20">
             </label>
             <button type="submit"
