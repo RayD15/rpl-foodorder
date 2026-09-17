@@ -26,7 +26,7 @@
                 @endif
             </div>
             <h1 class="mt-3 font-display text-3xl font-normal leading-tight text-ink-900">{{ $product->name }}</h1>
-            <p class="mt-1 text-2xl font-extrabold text-honey-600">{{ 'Rp' . number_format($product->price, 0, ',', '.') }}</p>
+            <p class="mt-1 text-2xl font-extrabold text-honey-400">{{ 'Rp' . number_format($product->price, 0, ',', '.') }}</p>
             <p class="mt-3 text-sm leading-relaxed text-ink-600">{{ $product->description }}</p>
 
             @if ($product->isReady())

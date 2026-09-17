@@ -31,7 +31,7 @@
                 <div id="checkout-items" class="divide-y divide-dashed divide-ink-300"></div>
                 <div class="flex justify-between pt-3 text-base font-extrabold text-ink-900">
                     <span>Total</span>
-                    <span id="checkout-total" class="text-honey-600"></span>
+                    <span id="checkout-total" class="text-honey-400"></span>
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
                 <div id="confirm-items" class="space-y-1.5 text-sm text-ink-800"></div>
                 <div class="flex justify-between gap-3 pt-3 text-base font-extrabold text-ink-900">
                     <span>Total</span>
-                    <span id="confirm-total" class="text-honey-600"></span>
+                    <span id="confirm-total" class="text-honey-400"></span>
                 </div>
             </div>
 

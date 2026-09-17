@@ -41,7 +41,7 @@
 
             <div class="relative z-10 w-full max-w-2xl px-6 pb-12 pt-16 sm:pt-0 sm:pb-0">
                 <h1 style="--reveal-delay:80ms; font-size: clamp(2.5rem, 6vw, 4rem);" class="animate-rise mt-4 max-w-lg font-display font-bold leading-tight">
-                    Mau pesan apa<br class="sm:hidden"> hari ini?
+                    Mau pesan apa<br class="sm:hidden"> <span class="font-caveat text-honey-400 drop-shadow-[0_0_20px_rgba(245,182,58,0.4)]">hari ini?</span>
                 </h1>
                 <p style="--reveal-delay:160ms" class="animate-rise mt-3 max-w-sm text-sm text-cream-100/90 sm:text-base">
                     Pilih menu favoritmu, langsung pesan lewat WhatsApp Admin.
@@ -52,9 +52,9 @@
                         Lihat Menu
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
                     </a>
-                    <a href="{{ route('product.show', $heroProducts->first()) }}"
+                    <a href="{{ route('product.show', $heroProducts->first()) }}" id="hero-current-product"
                         class="inline-flex items-center gap-2 rounded-xl bg-white/10 px-5 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/20">
-                        <span class="underline decoration-honey-400 decoration-2 underline-offset-4">{{ $heroProducts->first()->name }}</span>
+                        <span id="hero-current-name" class="underline decoration-honey-400 decoration-2 underline-offset-4">{{ $heroProducts->first()->name }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" /></svg>
                     </a>
                 </div>
@@ -139,7 +139,7 @@
                                 </a>
                                 <p class="mt-0.5 skeleton-text w-24 text-xs text-ink-400"></p>
                                 <div class="mt-2 flex items-center justify-between gap-2">
-                                    <span class="skeleton-text w-20 text-sm font-extrabold text-honey-600"></span>
+                                    <span class="skeleton-text w-20 text-sm font-extrabold text-honey-400"></span>
                                     @if ($i % 2 === 0)
                                         <button type="button" disabled aria-label="Tambah ke keranjang"
                                             class="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl bg-honey-400 text-ink-900 shadow-sm">
@@ -224,7 +224,7 @@
                                             @if ($i % 2 === 0)
                                                 <p class="skeleton-text w-20 text-xs text-ink-400 line-through"></p>
                                             @endif
-                                            <span class="skeleton-text w-16 text-sm font-extrabold text-honey-600"></span>
+                                            <span class="skeleton-text w-16 text-sm font-extrabold text-honey-400"></span>
                                         </div>
                                         @if ($i % 2 === 0)
                                             <button type="button" disabled aria-label="Tambah ke keranjang"
@@ -264,7 +264,7 @@
                                         @if ($bundle->regular_total > $bundle->price)
                                             <p class="text-xs text-ink-400 line-through">{{ 'Rp' . number_format($bundle->regular_total, 0, ',', '.') }}</p>
                                         @endif
-                                        <span class="text-sm font-extrabold text-honey-600">{{ 'Rp' . number_format($bundle->price, 0, ',', '.') }}</span>
+                                        <span class="text-sm font-extrabold text-honey-400">{{ 'Rp' . number_format($bundle->price, 0, ',', '.') }}</span>
                                     </div>
                                     @if ($bundle->isReady())
                                         <button type="button" data-add-bundle="{{ $bundle->id }}" aria-label="Tambah {{ $bundle->name }} ke keranjang"

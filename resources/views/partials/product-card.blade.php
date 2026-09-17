@@ -22,7 +22,7 @@
         </a>
         <p class="mt-0.5 text-xs text-ink-400">{{ $product->category->name ?? '' }}</p>
         <div class="mt-2 flex items-center justify-between gap-2">
-            <span class="text-sm font-extrabold text-honey-600">{{ 'Rp' . number_format($product->price, 0, ',', '.') }}</span>
+            <span class="text-sm font-extrabold text-honey-400">{{ 'Rp' . number_format($product->price, 0, ',', '.') }}</span>
             @if ($product->isReady())
                 <button type="button" data-add-to-cart="{{ $product->id }}" aria-label="Tambah {{ $product->name }} ke keranjang"
                     class="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl bg-honey-400 text-ink-900 shadow-sm transition hover:bg-honey-300 active:scale-90">

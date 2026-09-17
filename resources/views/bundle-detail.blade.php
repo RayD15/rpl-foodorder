@@ -31,7 +31,7 @@
                 @if ($bundle->regular_total > $bundle->price)
                     <span class="text-lg text-ink-400 line-through">{{ 'Rp' . number_format($bundle->regular_total, 0, ',', '.') }}</span>
                 @endif
-                <span class="text-2xl font-extrabold text-honey-600">{{ 'Rp' . number_format($bundle->price, 0, ',', '.') }}</span>
+                <span class="text-2xl font-extrabold text-honey-400">{{ 'Rp' . number_format($bundle->price, 0, ',', '.') }}</span>
             </div>
             @if ($bundle->description)
                 <p class="mt-3 text-sm leading-relaxed text-ink-600">{{ $bundle->description }}</p>
@@ -114,7 +114,7 @@
                                     @if ($b->regular_total > $b->price)
                                         <p class="text-xs text-ink-400 line-through">{{ 'Rp' . number_format($b->regular_total, 0, ',', '.') }}</p>
                                     @endif
-                                    <span class="text-sm font-extrabold text-honey-600">{{ 'Rp' . number_format($b->price, 0, ',', '.') }}</span>
+                                    <span class="text-sm font-extrabold text-honey-400">{{ 'Rp' . number_format($b->price, 0, ',', '.') }}</span>
                                 </div>
                                 @if ($b->isReady())
                                     <button type="button" data-add-bundle="{{ $b->id }}" aria-label="Tambah {{ $b->name }} ke keranjang"

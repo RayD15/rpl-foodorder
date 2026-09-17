@@ -33,7 +33,7 @@
                                 @if ($bundle->regular_total > $bundle->price)
                                     <p class="text-xs text-ink-400 line-through">{{ 'Rp' . number_format($bundle->regular_total, 0, ',', '.') }}</p>
                                 @endif
-                                <span class="text-sm font-extrabold text-honey-600">{{ 'Rp' . number_format($bundle->price, 0, ',', '.') }}</span>
+                                <span class="text-sm font-extrabold text-honey-400">{{ 'Rp' . number_format($bundle->price, 0, ',', '.') }}</span>
                             </div>
                             <button type="button" data-add-bundle="{{ $bundle->id }}" aria-label="Tambah {{ $bundle->name }} ke keranjang"
                                 class="grid h-10 w-10 flex-shrink-0 place-items-center rounded-xl bg-honey-400 text-ink-900 shadow-sm transition hover:bg-honey-300 active:scale-90">

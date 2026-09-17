@@ -24,7 +24,7 @@
             <span>Ongkos Kirim</span><span id="cart-shipping">Rp0</span>
         </div>
         <div class="mt-2 flex justify-between border-t border-dashed border-ink-300 pt-3 text-base font-extrabold text-ink-900">
-            <span>Total</span><span id="cart-grand-total" class="text-honey-600"></span>
+            <span>Total</span><span id="cart-grand-total" class="text-honey-400"></span>
         </div>
         <a href="{{ route('checkout') }}" id="cart-checkout-btn"
             class="mt-4 hidden items-center justify-center gap-2 rounded-2xl border border-ink-200 bg-honey-400 px-6 py-4 text-base font-extrabold text-ink-900 shadow-sm transition hover:bg-honey-300 active:translate-x-1 active:translate-y-1 active:shadow-none sm:flex">
