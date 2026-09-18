@@ -20,9 +20,6 @@
         <div class="flex justify-between py-1 text-sm text-ink-500">
             <span>Subtotal</span><span id="cart-subtotal"></span>
         </div>
-        <div class="flex justify-between py-1 text-sm text-ink-500">
-            <span>Ongkos Kirim</span><span id="cart-shipping">Rp0</span>
-        </div>
         <div class="mt-2 flex justify-between border-t border-dashed border-ink-300 pt-3 text-base font-extrabold text-ink-900">
             <span>Total</span><span id="cart-grand-total" class="text-honey-400"></span>
         </div>
@@ -40,7 +37,7 @@
                 <p class="text-xs text-ink-500">Total</p>
                 <p id="cart-sticky-total" class="truncate text-lg font-extrabold text-ink-900">Rp0</p>
             </div>
-            <a href="{{ route('checkout') }}"
+            <a href="{{ route('checkout') }}" id="cart-sticky-checkout-btn"
                 class="flex flex-1 items-center justify-center gap-2 rounded-2xl bg-honey-400 px-6 py-3.5 text-base font-extrabold text-ink-900 shadow-sm transition hover:bg-honey-300 active:scale-[0.98]">
                 Lanjut Checkout
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="h-4 w-4"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>

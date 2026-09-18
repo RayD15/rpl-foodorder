@@ -24,6 +24,9 @@ const Cart = {
     },
     // Bersihkan item yang produk/bundlenya tidak ada / tidak ready di katalog
     clean() {
+        const hasProducts = window.APP.products && window.APP.products.length > 0;
+        const hasBundles = window.APP.bundles && window.APP.bundles.length > 0;
+        if (!hasProducts && !hasBundles) return this.get();
         const cart = this.get();
         let changed = false;
         Object.keys(cart).forEach((key) => {
@@ -49,21 +52,25 @@ const Cart = {
         return type === 'bundle' ? `b:${id}` : `p:${id}`;
     },
     items() {
+        const hasProducts = window.APP.products && window.APP.products.length > 0;
+        const hasBundles = window.APP.bundles && window.APP.bundles.length > 0;
         this.clean();
         return Object.entries(this.get())
             .map(([key, qty]) => {
                 const { type, id } = this.parseKey(key);
                 if (type === 'bundle') {
+                    if (!hasBundles) return { type: 'bundle', id, qty };
                     const bundle = window.APP.bundles.find((b) => b.id === String(id));
                     return bundle ? { ...bundle, type: 'bundle', id: bundle.id, qty } : null;
                 }
+                if (!hasProducts) return { type: 'product', id, qty };
                 const product = window.APP.products.find((p) => p.id === String(id));
                 return product ? { ...product, type: 'product', id: product.id, qty } : null;
             })
             .filter(Boolean);
     },
     count() { return this.items().reduce((s, i) => s + i.qty, 0); },
-    total() { return this.items().reduce((s, i) => s + i.qty * i.price, 0); },
+    total() { return this.items().reduce((s, i) => s + (i.qty * (i.price || 0)), 0); },
     add(id, qty = 1) {
         // Validasi: produk harus ada & ready di katalog
         const product = window.APP.products.find((p) => p.id === String(id));
@@ -122,7 +129,6 @@ function updateFab() {
     const count = Cart.count();
     const total = Cart.total();
 
-    // Update bottom navbar cart count
     const bottomCount = document.getElementById('bottom-cart-count');
     if (bottomCount) {
         bottomCount.textContent = count;
@@ -130,7 +136,6 @@ function updateFab() {
         bottomCount.classList.toggle('grid', count > 0);
     }
 
-    // Update desktop navbar cart count
     const desktopCount = document.getElementById('desktop-cart-count');
     if (desktopCount) {
         desktopCount.textContent = count;
@@ -138,7 +143,18 @@ function updateFab() {
         desktopCount.classList.toggle('grid', count > 0);
     }
 
+    updateCheckoutButtons(count === 0);
+}
 
+function updateCheckoutButtons(isEmpty) {
+    const checkoutBtn = document.getElementById('cart-checkout-btn');
+    const stickyBtn = document.getElementById('cart-sticky-checkout-btn');
+    if (checkoutBtn) {
+        checkoutBtn.classList.toggle('hidden', isEmpty);
+    }
+    if (stickyBtn) {
+        stickyBtn.classList.toggle('hidden', isEmpty);
+    }
 }
 
 // Link menu hardcode aman untuk subfolder hosting (pakai path relatif,
@@ -544,19 +560,23 @@ function renderCartPage() {
 
     if (!items.length) {
         list.innerHTML = '';
+        updateCheckoutButtons(true);
         return;
     }
+
+    updateCheckoutButtons(false);
 
     list.innerHTML = items.map((item) => {
         const key = Cart.makeKey(item.type, item.id);
         const isBundle = item.type === 'bundle';
-        const safeName = escapeHtml(item.name);
+        const safeName = escapeHtml(item.name || 'Produk');
+        const itemPrice = item.price || 0;
         const detail = isBundle
             ? `<p class="line-clamp-2 break-words text-xs text-ink-500">${escapeHtml(item.items.map((i) => i.name + (i.qty > 1 ? ' ×' + i.qty : '')).join(' + '))}</p>`
-            : `<p class="text-sm text-ink-500">${formatRupiah(item.price)}</p>`;
+            : `<p class="text-sm text-ink-500">${formatRupiah(itemPrice)}</p>`;
         return `
         <div class="animate-rise flex items-center gap-4 rounded-2xl border-2 border-ink-200 bg-cream-100 p-3 card-brutal-hover" data-line="${key}" style="--reveal-delay:${items.indexOf(item) * 60}ms">
-            <img src="${item.image}" alt="${safeName}" loading="lazy" decoding="async" class="h-16 w-16 flex-shrink-0 rounded-xl object-cover bg-cream-200">
+            <img src="${item.image || '/images/placeholder.svg'}" alt="${safeName}" loading="lazy" decoding="async" class="h-16 w-16 flex-shrink-0 rounded-xl object-cover bg-cream-200">
             <div class="min-w-0 flex-1">
                 <p class="truncate font-bold text-ink-900">${safeName}</p>
                 ${detail}
@@ -567,7 +587,7 @@ function renderCartPage() {
                 </div>
             </div>
             <div class="flex flex-col items-end gap-2">
-                <p class="font-extrabold text-ink-900">${formatRupiah(item.price * item.qty)}</p>
+                <p class="font-extrabold text-ink-900">${formatRupiah(itemPrice * item.qty)}</p>
                 <button type="button" data-cart-remove="${key}" aria-label="Hapus ${safeName}" class="grid h-11 w-11 place-items-center text-tomato-500 transition hover:text-tomato-700">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor" class="h-5 w-5"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>
                 </button>
@@ -578,8 +598,6 @@ function renderCartPage() {
     const fmt = formatRupiah(Cart.total());
     const subtotal = document.getElementById('cart-subtotal');
     if (subtotal) subtotal.textContent = fmt;
-    const shipping = document.getElementById('cart-shipping');
-    if (shipping) shipping.textContent = 'Rp0';
     const grandTotal = document.getElementById('cart-grand-total');
     if (grandTotal) grandTotal.textContent = fmt;
     const stickyTotal = document.getElementById('cart-sticky-total');
@@ -623,7 +641,7 @@ function renderCheckoutPage() {
     if (!items.length) {
         list.innerHTML = `
             <div class="py-16 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="mx-auto mb-4 h-16 w-16 text-ink-300"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" class="mx-auto mb-4 h-16 w-16 text-ink-300"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
                 <h2 class="font-display mb-6 text-2xl font-normal text-ink-900">Keranjang kosong</h2>
                 <a href="${menuUrl()}" class="inline-block rounded-xl border border-ink-200 bg-tomato-500 px-6 py-3 text-sm font-extrabold text-white shadow-sm transition hover:bg-honey-300 active:translate-x-0.5 active:translate-y-0.5 active:shadow-none">Lihat Menu</a>
             </div>`;
@@ -635,10 +653,12 @@ function renderCheckoutPage() {
         const detail = item.type === 'bundle'
             ? `<span class="block break-words text-xs text-ink-400">${escapeHtml(item.items.map((i) => i.name + (i.qty > 1 ? ' ×' + i.qty : '')).join(' + '))}</span>`
             : '';
+        const itemName = item.name || 'Produk';
+        const itemPrice = item.price || 0;
         return `
         <div class="animate-rise flex items-center justify-between gap-3 py-2 text-sm text-ink-800" style="--reveal-delay:${items.indexOf(item) * 60}ms">
-            <span class="min-w-0 break-words"><strong>${escapeHtml(item.name)}</strong> × ${item.qty}${detail}</span>
-            <span class="flex-shrink-0 font-bold text-ink-900">${formatRupiah(item.price * item.qty)}</span>
+            <span class="min-w-0 break-words"><strong>${escapeHtml(itemName)}</strong> × ${item.qty}${detail}</span>
+            <span class="flex-shrink-0 font-bold text-ink-900">${formatRupiah(itemPrice * item.qty)}</span>
         </div>`;
     }).join('');
 
@@ -650,7 +670,9 @@ const buildMessage = (name, kelas, notes) => {
     let msg = 'Halo Admin TamsisFood!\n\n';
     msg += 'Saya ingin memesan:\n\n';
     items.forEach((i) => {
-        msg += `${i.name} × ${i.qty} = ${formatRupiah(i.price * i.qty)}\n`;
+        const name = i.name || 'Produk';
+        const price = i.price || 0;
+        msg += `${name} × ${i.qty} = ${formatRupiah(price * i.qty)}\n`;
         if (i.type === 'bundle') {
             i.items.forEach((bi) => {
                 msg += `   • ${bi.name} × ${bi.qty}\n`;
