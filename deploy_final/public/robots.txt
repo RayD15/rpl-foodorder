@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Blokir halaman admin dari index Google
+Disallow: /admin
+
+# Blokir folder internal
+Disallow: /storage/
+Disallow: /app/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /routes/
+Disallow: /resources/
+Disallow: /vendor/
+
+Sitemap: https://rpl2foodorder.infinityfreeapp.com/sitemap.xml
